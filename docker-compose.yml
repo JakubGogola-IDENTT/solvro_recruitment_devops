@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes: 
+      - ./data:/data/db
+    ports:
+      - "27017:27017"
+
+  awesome_app:
+    container_name: awesome_app
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    links: 
+      - mongo
+
